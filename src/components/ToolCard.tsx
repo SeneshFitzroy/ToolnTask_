@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ToolCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface ToolCardProps {
   condition: string;
   image?: string;
   available?: boolean;
+  id?: string;
 }
 
 const ToolCard: React.FC<ToolCardProps> = ({ 
@@ -18,53 +20,57 @@ const ToolCard: React.FC<ToolCardProps> = ({
   brand, 
   condition, 
   image, 
-  available = true 
+  available = true,
+  id = "1"
 }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 card-hover border border-gray-100 overflow-hidden">
-      <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-blue-100 hover:border-orange-300 overflow-hidden h-[400px] flex flex-col">
+      <div className="h-40 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
+        {available ? (
+          <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            Available
+          </div>
+        ) : (
+          <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            Rented
+          </div>
+        )}
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
-          <div className="text-gray-400 text-6xl">🔧</div>
+          <div className="text-blue-400 text-6xl">🔧</div>
         )}
       </div>
       
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-bold text-gray-800 line-clamp-2">{title}</h3>
-          <span className="text-2xl font-bold text-orange-500 ml-2">{price}</span>
+      <div className="p-6 flex-1 flex flex-col">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-xl font-bold text-gray-800 line-clamp-2 flex-1 mr-2">{title}</h3>
+          <span className="text-2xl font-bold text-orange-500 whitespace-nowrap">{price}</span>
         </div>
         
-        <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
+        <p className="text-gray-600 mb-4 line-clamp-2 flex-1">{description}</p>
         
-        <div className="space-y-2 mb-4">
+        <div className="space-y-2 mb-6">
           <div className="flex items-center text-sm text-gray-500">
-            <span className="w-4 h-4 mr-2">🏷️</span>
-            {brand}
+            <span className="w-5 h-5 mr-3 text-blue-500">🏷️</span>
+            <span className="font-medium">{brand}</span>
           </div>
           <div className="flex items-center text-sm text-gray-500">
-            <span className="w-4 h-4 mr-2">✨</span>
-            {condition}
-          </div>
-          <div className="flex items-center text-sm">
-            <span className={`w-3 h-3 rounded-full mr-2 ${available ? 'bg-green-500' : 'bg-red-500'}`}></span>
-            <span className={available ? 'text-green-600' : 'text-red-600'}>
-              {available ? 'Available' : 'Unavailable'}
-            </span>
+            <span className="w-5 h-5 mr-3 text-blue-500">✨</span>
+            <span className="font-medium">{condition}</span>
           </div>
         </div>
         
-        <button 
-          className={`w-full font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 ${
+        <Link
+          to={`/tools/${id}`}
+          className={`w-full font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center block ${
             available 
               ? 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white' 
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
-          disabled={!available}
         >
-          {available ? 'Rent Now' : 'Not Available'}
-        </button>
+          {available ? 'View Details' : 'Not Available'}
+        </Link>
       </div>
     </div>
   );

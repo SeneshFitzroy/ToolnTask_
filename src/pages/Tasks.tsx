@@ -9,9 +9,10 @@ const Tasks = () => {
   const { id } = useParams();
   const [showMore, setShowMore] = useState(false);
 
-  // Mock data for all tasks
+  // Mock data for all tasks with IDs
   const allTasks = [
     {
+      id: "1",
       title: "Garden Maintenance Service",
       description: "Need someone to mow the lawn, trim hedges, and plant new flowers in my backyard.",
       price: "LKR 2,500",
@@ -20,6 +21,7 @@ const Tasks = () => {
       isUrgent: true
     },
     {
+      id: "2",
       title: "Babysitting Service",
       description: "Looking for a reliable babysitter for my 5-year-old daughter for the weekend.",
       price: "LKR 1,500",
@@ -27,6 +29,7 @@ const Tasks = () => {
       location: "Kandy"
     },
     {
+      id: "3",
       title: "House Cleaning",
       description: "Deep cleaning service needed for a 3-bedroom house before moving in.",
       price: "LKR 3,000",
@@ -34,6 +37,7 @@ const Tasks = () => {
       location: "Galle"
     },
     {
+      id: "4",
       title: "Car Washing Service",
       description: "Need someone to wash and detail my car this weekend.",
       price: "LKR 1,200",
@@ -41,6 +45,7 @@ const Tasks = () => {
       location: "Colombo 05"
     },
     {
+      id: "5",
       title: "Pet Walking Service",
       description: "Looking for someone to walk my dog twice a day while I'm at work.",
       price: "LKR 800",
@@ -48,6 +53,7 @@ const Tasks = () => {
       location: "Mount Lavinia"
     },
     {
+      id: "6",
       title: "Tutoring Service",
       description: "Math tutor needed for grade 10 student, weekends only.",
       price: "LKR 2,000",
@@ -56,15 +62,17 @@ const Tasks = () => {
     }
   ];
 
-  // Mock data for specific task details
-  const mockTask = {
-    jobName: "Garden Maintenance Service",
-    jobType: "Short-term Gig",
-    requiredTime: "Nov 15, 2025, 9:00 AM - 12:00 PM",
-    employer: "Saman Perera",
-    location: "Colombo 03",
-    payment: "LKR 2,500 for 3 hours",
+  // Find the specific task
+  const currentTask = allTasks.find(task => task.id === id) || {
+    id: "1",
+    title: "Garden Maintenance Service",
     description: "Need someone experienced to mow the lawn, trim hedges, and plant new flowers in my backyard. The garden is approximately 200 square meters. All tools will be provided, but you're welcome to bring your own if you prefer. Looking for someone reliable who can complete the work within the specified time frame.",
+    price: "LKR 2,500",
+    time: "Nov 15, 2025, 9:00 AM - 12:00 PM",
+    location: "Colombo 03",
+    isUrgent: true,
+    jobType: "Short-term Gig",
+    employer: "Saman Perera",
     requirements: [
       "Previous gardening experience preferred",
       "Own transportation to reach location",
@@ -75,29 +83,7 @@ const Tasks = () => {
     contactInfo: "+94 77 123 4567"
   };
 
-  const similarTasks = [
-    {
-      title: "Lawn Mowing Service",
-      description: "Weekly lawn mowing service needed for a small garden in Mount Lavinia.",
-      price: "LKR 1,800",
-      time: "Nov 20, 2025 - 1.5 hours",
-      location: "Mount Lavinia"
-    },
-    {
-      title: "Tree Pruning",
-      description: "Professional tree pruning service required for coconut and mango trees.",
-      price: "LKR 3,500",
-      time: "Nov 22, 2025 - 3 hours",
-      location: "Dehiwala"
-    },
-    {
-      title: "Flower Bed Preparation",
-      description: "Help needed to prepare flower beds and plant seasonal flowers.",
-      price: "LKR 2,000",
-      time: "Nov 25, 2025 - 2 hours",
-      location: "Nugegoda"
-    }
-  ];
+  const similarTasks = allTasks.filter(task => task.id !== id).slice(0, 3);
 
   // If no ID is provided, show the tasks list page
   if (!id) {
@@ -119,7 +105,7 @@ const Tasks = () => {
               <input
                 type="text"
                 placeholder="Search for tasks..."
-                className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg shadow-lg"
+                className="w-full px-6 py-4 rounded-2xl border-2 border-blue-200 focus:border-orange-500 focus:outline-none text-lg shadow-lg"
               />
               <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-xl transition-colors">
                 🔍
@@ -129,8 +115,8 @@ const Tasks = () => {
 
           {/* Tasks Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allTasks.map((task, index) => (
-              <TaskCard key={index} {...task} />
+            {allTasks.map((task) => (
+              <TaskCard key={task.id} {...task} />
             ))}
           </div>
         </div>
@@ -145,86 +131,111 @@ const Tasks = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Main Task Details */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-            <div className="lg:w-2/3">
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">{mockTask.jobName}</h1>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
-                  {mockTask.jobType}
-                </span>
-                <span className="flex items-center">
-                  <span className="mr-1">⏰</span>
-                  {mockTask.requiredTime}
-                </span>
-                <span className="flex items-center">
-                  <span className="mr-1">📍</span>
-                  {mockTask.location}
-                </span>
+        <div className="bg-white rounded-3xl shadow-2xl p-8 mb-8 border-2 border-blue-100">
+          {/* Header Section */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8">
+            <div className="lg:w-2/3 mb-6 lg:mb-0">
+              <div className="flex items-center mb-4">
+                <h1 className="text-4xl font-bold text-gray-800">{currentTask.title}</h1>
+                {currentTask.isUrgent && (
+                  <span className="ml-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                    URGENT
+                  </span>
+                )}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="bg-blue-50 rounded-xl p-4">
+                  <span className="text-blue-600 font-semibold text-sm">Job Type</span>
+                  <p className="text-blue-800 font-bold text-lg">{currentTask.jobType || "Gig Work"}</p>
+                </div>
+                <div className="bg-orange-50 rounded-xl p-4">
+                  <span className="text-orange-600 font-semibold text-sm">Required Time</span>
+                  <p className="text-orange-800 font-bold text-lg">{currentTask.time}</p>
+                </div>
+                <div className="bg-green-50 rounded-xl p-4">
+                  <span className="text-green-600 font-semibold text-sm">Location</span>
+                  <p className="text-green-800 font-bold text-lg">{currentTask.location}</p>
+                </div>
+                <div className="bg-purple-50 rounded-xl p-4">
+                  <span className="text-purple-600 font-semibold text-sm">Employer</span>
+                  <p className="text-purple-800 font-bold text-lg">{currentTask.employer || "Private"}</p>
+                </div>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-orange-500 mb-4">{mockTask.payment}</div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105">
-                  Save Job
+            
+            <div className="lg:w-1/3 lg:ml-8">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl p-6 text-center mb-6">
+                <span className="text-sm font-medium">Payment</span>
+                <p className="text-3xl font-bold">{currentTask.price}</p>
+              </div>
+              
+              <div className="flex flex-col gap-3">
+                <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  💾 Save Job
                 </button>
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105">
-                  Share
+                <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  📤 Share
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-200 pt-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">About the Job</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-gray-700 mb-2">Job Description</h3>
-                <p className="text-gray-600 leading-relaxed">{mockTask.description}</p>
+          {/* About the Job Section */}
+          <div className="border-t-2 border-gray-100 pt-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span className="mr-3 text-blue-500">📋</span>
+              About the Job
+            </h2>
+            
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h3 className="font-bold text-gray-700 mb-3 text-lg">Job Description</h3>
+                <p className="text-gray-600 leading-relaxed">{currentTask.description}</p>
               </div>
               
-              <div>
-                <h3 className="font-semibold text-gray-700 mb-2">Requirements</h3>
-                <ul className="list-disc list-inside text-gray-600 space-y-1">
-                  {mockTask.requirements.map((req, index) => (
-                    <li key={index}>{req}</li>
-                  ))}
-                </ul>
-              </div>
+              {currentTask.requirements && (
+                <div className="bg-blue-50 rounded-xl p-6">
+                  <h3 className="font-bold text-blue-700 mb-3 text-lg">Requirements</h3>
+                  <ul className="space-y-2">
+                    {currentTask.requirements.map((req, index) => (
+                      <li key={index} className="flex items-start text-blue-600">
+                        <span className="mr-2 text-blue-500 font-bold">✓</span>
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {showMore && (
-                <div className="space-y-4 pt-4 border-t border-gray-100">
-                  <div>
-                    <h3 className="font-semibold text-gray-700 mb-2">Employer</h3>
-                    <p className="text-gray-600">{mockTask.employer}</p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-sem1ibold text-gray-700 mb-2">Application Deadline</h3>
-                    <p className="text-gray-600">{mockTask.applicationDeadline}</p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-semibold text-gray-700 mb-2">Contact Information</h3>
-                    <p className="text-gray-600">{mockTask.contactInfo}</p>
+                <div className="space-y-4 pt-4 border-t border-gray-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-green-50 rounded-xl p-4">
+                      <h3 className="font-bold text-green-700 mb-2">Application Deadline</h3>
+                      <p className="text-green-600">{currentTask.applicationDeadline || "Open"}</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-xl p-4">
+                      <h3 className="font-bold text-purple-700 mb-2">Contact</h3>
+                      <p className="text-purple-600">{currentTask.contactInfo || "Through platform"}</p>
+                    </div>
                   </div>
                 </div>
               )}
               
               <button
                 onClick={() => setShowMore(!showMore)}
-                className="text-orange-500 hover:text-orange-600 font-medium transition-colors"
+                className="text-orange-500 hover:text-orange-600 font-bold transition-colors flex items-center"
               >
-                {showMore ? 'Show Less' : 'Show More Details'}
+                {showMore ? '⬆️ Show Less' : '⬇️ Show More Details'}
               </button>
             </div>
 
             <div className="mt-8">
-              <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105">
-                Apply Now
+              <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-2xl text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                🚀 Apply Now
               </button>
             </div>
           </div>
@@ -232,10 +243,13 @@ const Tasks = () => {
 
         {/* Similar Tasks */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Similar Job Posts</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+            <span className="mr-3 text-orange-500">🔍</span>
+            Similar Job Posts
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {similarTasks.map((task, index) => (
-              <TaskCard key={index} {...task} />
+            {similarTasks.map((task) => (
+              <TaskCard key={task.id} {...task} />
             ))}
           </div>
         </div>
