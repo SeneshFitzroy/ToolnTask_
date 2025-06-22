@@ -9,6 +9,54 @@ const Tasks = () => {
   const { id } = useParams();
   const [showMore, setShowMore] = useState(false);
 
+  // Mock data for all tasks
+  const allTasks = [
+    {
+      title: "Garden Maintenance Service",
+      description: "Need someone to mow the lawn, trim hedges, and plant new flowers in my backyard.",
+      price: "LKR 2,500",
+      time: "Nov 15, 2025 - 3 hours",
+      location: "Colombo 03",
+      isUrgent: true
+    },
+    {
+      title: "Babysitting Service",
+      description: "Looking for a reliable babysitter for my 5-year-old daughter for the weekend.",
+      price: "LKR 1,500",
+      time: "Nov 16, 2025 - 6 hours",
+      location: "Kandy"
+    },
+    {
+      title: "House Cleaning",
+      description: "Deep cleaning service needed for a 3-bedroom house before moving in.",
+      price: "LKR 3,000",
+      time: "Nov 18, 2025 - 4 hours",
+      location: "Galle"
+    },
+    {
+      title: "Car Washing Service",
+      description: "Need someone to wash and detail my car this weekend.",
+      price: "LKR 1,200",
+      time: "Nov 19, 2025 - 2 hours",
+      location: "Colombo 05"
+    },
+    {
+      title: "Pet Walking Service",
+      description: "Looking for someone to walk my dog twice a day while I'm at work.",
+      price: "LKR 800",
+      time: "Nov 20, 2025 - 1 hour",
+      location: "Mount Lavinia"
+    },
+    {
+      title: "Tutoring Service",
+      description: "Math tutor needed for grade 10 student, weekends only.",
+      price: "LKR 2,000",
+      time: "Nov 21, 2025 - 2 hours",
+      location: "Dehiwala"
+    }
+  ];
+
+  // Mock data for specific task details
   const mockTask = {
     jobName: "Garden Maintenance Service",
     jobType: "Short-term Gig",
@@ -51,6 +99,48 @@ const Tasks = () => {
     }
   ];
 
+  // If no ID is provided, show the tasks list page
+  if (!id) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              Available <span className="text-orange-500">Tasks</span>
+            </h1>
+            <p className="text-xl text-gray-600">Find the perfect gig for your skills</p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search for tasks..."
+                className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg shadow-lg"
+              />
+              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-xl transition-colors">
+                🔍
+              </button>
+            </div>
+          </div>
+
+          {/* Tasks Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allTasks.map((task, index) => (
+              <TaskCard key={index} {...task} />
+            ))}
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    );
+  }
+
+  // If ID is provided, show the specific task details
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />

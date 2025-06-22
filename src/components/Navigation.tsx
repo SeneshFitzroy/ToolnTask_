@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -29,7 +28,7 @@ const Navigation = () => {
             <Link
               to="/tasks"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname.includes('/tasks')
+                location.pathname === '/tasks'
                   ? 'text-orange-300 bg-blue-800'
                   : 'text-white hover:text-orange-300'
               }`}
@@ -39,7 +38,7 @@ const Navigation = () => {
             <Link
               to="/tools"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname.includes('/tools')
+                location.pathname === '/tools'
                   ? 'text-orange-300 bg-blue-800'
                   : 'text-white hover:text-orange-300'
               }`}

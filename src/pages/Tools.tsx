@@ -9,6 +9,59 @@ const Tools = () => {
   const { id } = useParams();
   const [showMore, setShowMore] = useState(false);
 
+  // Mock data for all tools
+  const allTools = [
+    {
+      title: "Bosch Power Drill",
+      description: "High-quality cordless drill with multiple bits and battery pack included.",
+      price: "LKR 500/day",
+      brand: "Bosch",
+      condition: "Excellent",
+      available: true
+    },
+    {
+      title: "Honda Lawn Mower",
+      description: "Electric lawn mower perfect for medium to large gardens. Well maintained.",
+      price: "LKR 750/day",
+      brand: "Honda",
+      condition: "Good",
+      available: true
+    },
+    {
+      title: "Karcher Pressure Washer",
+      description: "Professional grade pressure washer for cleaning driveways and walls.",
+      price: "LKR 1,200/day",
+      brand: "Karcher",
+      condition: "Like New",
+      available: false
+    },
+    {
+      title: "DeWalt Circular Saw",
+      description: "Powerful circular saw for precision cutting of wood and other materials.",
+      price: "LKR 800/day",
+      brand: "DeWalt",
+      condition: "Good",
+      available: true
+    },
+    {
+      title: "Makita Impact Driver",
+      description: "Professional grade impact driver with variable speed control and LED light.",
+      price: "LKR 600/day",
+      brand: "Makita",
+      condition: "Like New",
+      available: true
+    },
+    {
+      title: "Stanley Tool Set",
+      description: "Complete tool set with screwdrivers, wrenches, and other essential tools.",
+      price: "LKR 400/day",
+      brand: "Stanley",
+      condition: "Excellent",
+      available: true
+    }
+  ];
+
+  // Mock data for specific tool details
   const mockTool = {
     toolName: "Bosch Professional Power Drill",
     brand: "Bosch",
@@ -62,6 +115,48 @@ const Tools = () => {
     }
   ];
 
+  // If no ID is provided, show the tools list page
+  if (!id) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              Available <span className="text-orange-500">Tools</span>
+            </h1>
+            <p className="text-xl text-gray-600">Rent the tools you need for your projects</p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search for tools..."
+                className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg shadow-lg"
+              />
+              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-xl transition-colors">
+                🔍
+              </button>
+            </div>
+          </div>
+
+          {/* Tools Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allTools.map((tool, index) => (
+              <ToolCard key={index} {...tool} />
+            ))}
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    );
+  }
+
+  // If ID is provided, show the specific tool details
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
