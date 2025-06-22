@@ -9,7 +9,7 @@ const Tasks = () => {
   const { id } = useParams();
   const [showMore, setShowMore] = useState(false);
 
-  // Mock data for all tasks with IDs
+  // Mock data for all tasks with IDs and all required properties
   const allTasks = [
     {
       id: "1",
@@ -18,7 +18,17 @@ const Tasks = () => {
       price: "LKR 2,500",
       time: "Nov 15, 2025 - 3 hours",
       location: "Colombo 03",
-      isUrgent: true
+      isUrgent: true,
+      jobType: "Short-term Gig",
+      employer: "Saman Perera",
+      requirements: [
+        "Previous gardening experience preferred",
+        "Own transportation to reach location",
+        "Available on specified date and time",
+        "Physical fitness for outdoor work"
+      ],
+      applicationDeadline: "Nov 12, 2025",
+      contactInfo: "+94 77 123 4567"
     },
     {
       id: "2",
@@ -26,7 +36,16 @@ const Tasks = () => {
       description: "Looking for a reliable babysitter for my 5-year-old daughter for the weekend.",
       price: "LKR 1,500",
       time: "Nov 16, 2025 - 6 hours",
-      location: "Kandy"
+      location: "Kandy",
+      jobType: "Short-term Gig",
+      employer: "Nimal Silva",
+      requirements: [
+        "Experience with children",
+        "References required",
+        "Available weekends"
+      ],
+      applicationDeadline: "Nov 13, 2025",
+      contactInfo: "+94 77 234 5678"
     },
     {
       id: "3",
@@ -34,7 +53,16 @@ const Tasks = () => {
       description: "Deep cleaning service needed for a 3-bedroom house before moving in.",
       price: "LKR 3,000",
       time: "Nov 18, 2025 - 4 hours",
-      location: "Galle"
+      location: "Galle",
+      jobType: "One-time Task",
+      employer: "Kamala Fernando",
+      requirements: [
+        "Professional cleaning experience",
+        "Own cleaning supplies",
+        "Attention to detail"
+      ],
+      applicationDeadline: "Nov 15, 2025",
+      contactInfo: "+94 77 345 6789"
     },
     {
       id: "4",
@@ -42,7 +70,16 @@ const Tasks = () => {
       description: "Need someone to wash and detail my car this weekend.",
       price: "LKR 1,200",
       time: "Nov 19, 2025 - 2 hours",
-      location: "Colombo 05"
+      location: "Colombo 05",
+      jobType: "Quick Task",
+      employer: "Rohan Perera",
+      requirements: [
+        "Car washing experience",
+        "Available weekends",
+        "Own equipment preferred"
+      ],
+      applicationDeadline: "Nov 16, 2025",
+      contactInfo: "+94 77 456 7890"
     },
     {
       id: "5",
@@ -50,7 +87,16 @@ const Tasks = () => {
       description: "Looking for someone to walk my dog twice a day while I'm at work.",
       price: "LKR 800",
       time: "Nov 20, 2025 - 1 hour",
-      location: "Mount Lavinia"
+      location: "Mount Lavinia",
+      jobType: "Regular Service",
+      employer: "Priya Jayasinghe",
+      requirements: [
+        "Love for animals",
+        "Regular availability",
+        "Responsible attitude"
+      ],
+      applicationDeadline: "Nov 17, 2025",
+      contactInfo: "+94 77 567 8901"
     },
     {
       id: "6",
@@ -58,31 +104,21 @@ const Tasks = () => {
       description: "Math tutor needed for grade 10 student, weekends only.",
       price: "LKR 2,000",
       time: "Nov 21, 2025 - 2 hours",
-      location: "Dehiwala"
+      location: "Dehiwala",
+      jobType: "Educational Service",
+      employer: "Anura Wickramasinghe",
+      requirements: [
+        "Strong math background",
+        "Teaching experience",
+        "Weekend availability"
+      ],
+      applicationDeadline: "Nov 18, 2025",
+      contactInfo: "+94 77 678 9012"
     }
   ];
 
   // Find the specific task
-  const currentTask = allTasks.find(task => task.id === id) || {
-    id: "1",
-    title: "Garden Maintenance Service",
-    description: "Need someone experienced to mow the lawn, trim hedges, and plant new flowers in my backyard. The garden is approximately 200 square meters. All tools will be provided, but you're welcome to bring your own if you prefer. Looking for someone reliable who can complete the work within the specified time frame.",
-    price: "LKR 2,500",
-    time: "Nov 15, 2025, 9:00 AM - 12:00 PM",
-    location: "Colombo 03",
-    isUrgent: true,
-    jobType: "Short-term Gig",
-    employer: "Saman Perera",
-    requirements: [
-      "Previous gardening experience preferred",
-      "Own transportation to reach location",
-      "Available on specified date and time",
-      "Physical fitness for outdoor work"
-    ],
-    applicationDeadline: "Nov 12, 2025",
-    contactInfo: "+94 77 123 4567"
-  };
-
+  const currentTask = allTasks.find(task => task.id === id) || allTasks[0];
   const similarTasks = allTasks.filter(task => task.id !== id).slice(0, 3);
 
   // If no ID is provided, show the tasks list page
@@ -149,7 +185,7 @@ const Tasks = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div className="bg-blue-50 rounded-xl p-4">
                   <span className="text-blue-600 font-semibold text-sm">Job Type</span>
-                  <p className="text-blue-800 font-bold text-lg">{currentTask.jobType || "Gig Work"}</p>
+                  <p className="text-blue-800 font-bold text-lg">{currentTask.jobType}</p>
                 </div>
                 <div className="bg-orange-50 rounded-xl p-4">
                   <span className="text-orange-600 font-semibold text-sm">Required Time</span>
@@ -161,7 +197,7 @@ const Tasks = () => {
                 </div>
                 <div className="bg-purple-50 rounded-xl p-4">
                   <span className="text-purple-600 font-semibold text-sm">Employer</span>
-                  <p className="text-purple-800 font-bold text-lg">{currentTask.employer || "Private"}</p>
+                  <p className="text-purple-800 font-bold text-lg">{currentTask.employer}</p>
                 </div>
               </div>
             </div>
@@ -196,30 +232,28 @@ const Tasks = () => {
                 <p className="text-gray-600 leading-relaxed">{currentTask.description}</p>
               </div>
               
-              {currentTask.requirements && (
-                <div className="bg-blue-50 rounded-xl p-6">
-                  <h3 className="font-bold text-blue-700 mb-3 text-lg">Requirements</h3>
-                  <ul className="space-y-2">
-                    {currentTask.requirements.map((req, index) => (
-                      <li key={index} className="flex items-start text-blue-600">
-                        <span className="mr-2 text-blue-500 font-bold">✓</span>
-                        {req}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="bg-blue-50 rounded-xl p-6">
+                <h3 className="font-bold text-blue-700 mb-3 text-lg">Requirements</h3>
+                <ul className="space-y-2">
+                  {currentTask.requirements.map((req, index) => (
+                    <li key={index} className="flex items-start text-blue-600">
+                      <span className="mr-2 text-blue-500 font-bold">✓</span>
+                      {req}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {showMore && (
                 <div className="space-y-4 pt-4 border-t border-gray-200">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-green-50 rounded-xl p-4">
                       <h3 className="font-bold text-green-700 mb-2">Application Deadline</h3>
-                      <p className="text-green-600">{currentTask.applicationDeadline || "Open"}</p>
+                      <p className="text-green-600">{currentTask.applicationDeadline}</p>
                     </div>
                     <div className="bg-purple-50 rounded-xl p-4">
                       <h3 className="font-bold text-purple-700 mb-2">Contact</h3>
-                      <p className="text-purple-600">{currentTask.contactInfo || "Through platform"}</p>
+                      <p className="text-purple-600">{currentTask.contactInfo}</p>
                     </div>
                   </div>
                 </div>

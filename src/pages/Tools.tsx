@@ -9,7 +9,7 @@ const Tools = () => {
   const { id } = useParams();
   const [showMore, setShowMore] = useState(false);
 
-  // Mock data for all tools with IDs
+  // Mock data for all tools with IDs and all required properties
   const allTools = [
     {
       id: "1",
@@ -18,7 +18,25 @@ const Tools = () => {
       price: "LKR 500/day",
       brand: "Bosch",
       condition: "Excellent",
-      available: true
+      available: true,
+      manufacturer: "Bosch Industries",
+      location: "Colombo 07",
+      availableDate: "Nov 10 - Nov 20, 2025",
+      owner: "Kamal Silva",
+      specifications: [
+        "18V Lithium-ion battery",
+        "2-speed gearbox for versatile applications",
+        "LED light for improved visibility",
+        "Ergonomic design for comfortable handling",
+        "Maximum torque: 38 Nm"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 1 day",
+        "Security deposit: LKR 2,000",
+        "Pick-up and drop-off available",
+        "Damage liability applies"
+      ],
+      contactInfo: "+94 77 987 6543"
     },
     {
       id: "2",
@@ -27,7 +45,25 @@ const Tools = () => {
       price: "LKR 750/day",
       brand: "Honda",
       condition: "Good",
-      available: true
+      available: true,
+      manufacturer: "Honda Motors",
+      location: "Kandy",
+      availableDate: "Nov 12 - Nov 25, 2025",
+      owner: "Saman Rajapaksa",
+      specifications: [
+        "Electric motor - eco-friendly",
+        "21-inch cutting deck",
+        "3-in-1 mulching capability",
+        "Height adjustment: 6 positions",
+        "Grass bag capacity: 60L"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 1 day",
+        "Security deposit: LKR 3,000",
+        "Fuel not included",
+        "Return in clean condition"
+      ],
+      contactInfo: "+94 77 123 4567"
     },
     {
       id: "3",
@@ -36,7 +72,25 @@ const Tools = () => {
       price: "LKR 1,200/day",
       brand: "Karcher",
       condition: "Like New",
-      available: false
+      available: false,
+      manufacturer: "Karcher International",
+      location: "Galle",
+      availableDate: "Available from Nov 30, 2025",
+      owner: "Nimal Fernando",
+      specifications: [
+        "High pressure: 150 bar",
+        "Flow rate: 8L/min",
+        "Professional grade motor",
+        "Various nozzle attachments",
+        "20m high-pressure hose"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 4 hours",
+        "Security deposit: LKR 5,000",
+        "Training provided if needed",
+        "Insurance recommended"
+      ],
+      contactInfo: "+94 77 234 5678"
     },
     {
       id: "4",
@@ -45,7 +99,25 @@ const Tools = () => {
       price: "LKR 800/day",
       brand: "DeWalt",
       condition: "Good",
-      available: true
+      available: true,
+      manufacturer: "Stanley Black & Decker",
+      location: "Colombo 05",
+      availableDate: "Nov 8 - Nov 18, 2025",
+      owner: "Rohan Silva",
+      specifications: [
+        "7-1/4 inch carbide blade",
+        "15 Amp motor",
+        "Bevel capacity: 0-50°",
+        "Electric brake technology",
+        "Magnesium shoe for durability"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 1 day",
+        "Security deposit: LKR 4,000",
+        "Safety equipment included",
+        "Experience required"
+      ],
+      contactInfo: "+94 77 345 6789"
     },
     {
       id: "5",
@@ -54,7 +126,25 @@ const Tools = () => {
       price: "LKR 600/day",
       brand: "Makita",
       condition: "Like New",
-      available: true
+      available: true,
+      manufacturer: "Makita Corporation",
+      location: "Mount Lavinia",
+      availableDate: "Nov 5 - Nov 15, 2025",
+      owner: "Priya Jayawardena",
+      specifications: [
+        "18V LXT Lithium-Ion battery",
+        "Variable 2-speed transmission",
+        "Built-in LED light",
+        "Compact design: 5-1/4 long",
+        "Maximum torque: 1,500 in.lbs"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 1 day",
+        "Security deposit: LKR 2,500",
+        "Battery charger included",
+        "Return fully charged"
+      ],
+      contactInfo: "+94 77 456 7890"
     },
     {
       id: "6",
@@ -63,39 +153,30 @@ const Tools = () => {
       price: "LKR 400/day",
       brand: "Stanley",
       condition: "Excellent",
-      available: true
+      available: true,
+      manufacturer: "Stanley Black & Decker",
+      location: "Dehiwala",
+      availableDate: "Nov 1 - Nov 30, 2025",
+      owner: "Anura Perera",
+      specifications: [
+        "65-piece tool set",
+        "Chrome vanadium steel",
+        "Combination wrenches: 8mm-19mm",
+        "Phillips and flathead screwdrivers",
+        "Durable carrying case"
+      ],
+      rentalTerms: [
+        "Minimum rental period: 1 day",
+        "Security deposit: LKR 1,500",
+        "Count all pieces before return",
+        "Replace if lost or damaged"
+      ],
+      contactInfo: "+94 77 567 8901"
     }
   ];
 
   // Find the specific tool
-  const currentTool = allTools.find(tool => tool.id === id) || {
-    id: "1",
-    title: "Bosch Professional Power Drill",
-    description: "High-quality cordless drill with 18V lithium-ion battery. Perfect for drilling into wood, metal, and masonry. Comes with a complete set of drill bits and a carrying case. The tool has been well-maintained and serviced regularly.",
-    price: "LKR 500/day",
-    brand: "Bosch",
-    condition: "Excellent",
-    available: true,
-    manufacturer: "Bosch Industries",
-    availableDate: "Nov 10 - Nov 20, 2025",
-    owner: "Kamal Silva",
-    location: "Colombo 07",
-    specifications: [
-      "18V Lithium-ion battery",
-      "2-speed gearbox for versatile applications",
-      "LED light for improved visibility",
-      "Ergonomic design for comfortable handling",
-      "Maximum torque: 38 Nm"
-    ],
-    rentalTerms: [
-      "Minimum rental period: 1 day",
-      "Security deposit: LKR 2,000",
-      "Pick-up and drop-off available",
-      "Damage liability applies"
-    ],
-    contactInfo: "+94 77 987 6543"
-  };
-
+  const currentTool = allTools.find(tool => tool.id === id) || allTools[0];
   const similarTools = allTools.filter(tool => tool.id !== id).slice(0, 3);
 
   // If no ID is provided, show the tools list page
@@ -180,11 +261,11 @@ const Tools = () => {
                 </div>
                 <div className="bg-purple-50 rounded-xl p-4">
                   <span className="text-purple-600 font-semibold text-sm">Manufacturer</span>
-                  <p className="text-purple-800 font-bold text-lg">{currentTool.manufacturer || currentTool.brand}</p>
+                  <p className="text-purple-800 font-bold text-lg">{currentTool.manufacturer}</p>
                 </div>
                 <div className="bg-orange-50 rounded-xl p-4">
                   <span className="text-orange-600 font-semibold text-sm">Location</span>
-                  <p className="text-orange-800 font-bold text-lg">{currentTool.location || "Colombo"}</p>
+                  <p className="text-orange-800 font-bold text-lg">{currentTool.location}</p>
                 </div>
               </div>
 
@@ -192,7 +273,7 @@ const Tools = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-orange-100 font-medium text-sm">Available Period</span>
-                    <p className="font-bold text-lg">{currentTool.availableDate || "Available Now"}</p>
+                    <p className="font-bold text-lg">{currentTool.availableDate}</p>
                   </div>
                   <div className="text-right">
                     <span className="text-orange-100 font-medium text-sm">Rental Price</span>
@@ -225,44 +306,40 @@ const Tools = () => {
                 <p className="text-gray-600 leading-relaxed">{currentTool.description}</p>
               </div>
               
-              {currentTool.specifications && (
-                <div className="bg-blue-50 rounded-xl p-6">
-                  <h3 className="font-bold text-blue-700 mb-3 text-lg">Specifications</h3>
-                  <ul className="space-y-2">
-                    {currentTool.specifications.map((spec, index) => (
-                      <li key={index} className="flex items-start text-blue-600">
-                        <span className="mr-2 text-blue-500 font-bold">⚙️</span>
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="bg-blue-50 rounded-xl p-6">
+                <h3 className="font-bold text-blue-700 mb-3 text-lg">Specifications</h3>
+                <ul className="space-y-2">
+                  {currentTool.specifications.map((spec, index) => (
+                    <li key={index} className="flex items-start text-blue-600">
+                      <span className="mr-2 text-blue-500 font-bold">⚙️</span>
+                      {spec}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {showMore && (
                 <div className="space-y-4 pt-4 border-t border-gray-200">
-                  {currentTool.rentalTerms && (
-                    <div className="bg-orange-50 rounded-xl p-6">
-                      <h3 className="font-bold text-orange-700 mb-3 text-lg">Rental Terms</h3>
-                      <ul className="space-y-2">
-                        {currentTool.rentalTerms.map((term, index) => (
-                          <li key={index} className="flex items-start text-orange-600">
-                            <span className="mr-2 text-orange-500 font-bold">📋</span>
-                            {term}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  <div className="bg-orange-50 rounded-xl p-6">
+                    <h3 className="font-bold text-orange-700 mb-3 text-lg">Rental Terms</h3>
+                    <ul className="space-y-2">
+                      {currentTool.rentalTerms.map((term, index) => (
+                        <li key={index} className="flex items-start text-orange-600">
+                          <span className="mr-2 text-orange-500 font-bold">📋</span>
+                          {term}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-green-50 rounded-xl p-4">
                       <h3 className="font-bold text-green-700 mb-2">Owner</h3>
-                      <p className="text-green-600">{currentTool.owner || "Private Owner"}</p>
+                      <p className="text-green-600">{currentTool.owner}</p>
                     </div>
                     <div className="bg-purple-50 rounded-xl p-4">
                       <h3 className="font-bold text-purple-700 mb-2">Contact</h3>
-                      <p className="text-purple-600">{currentTool.contactInfo || "Through platform"}</p>
+                      <p className="text-purple-600">{currentTool.contactInfo}</p>
                     </div>
                   </div>
                 </div>
