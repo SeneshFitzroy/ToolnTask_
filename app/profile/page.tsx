@@ -1,9 +1,11 @@
 
-import React, { useState } from 'react';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
+'use client';
 
-const Profile = () => {
+import React, { useState } from 'react';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer';
+
+export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: "John Perera",
@@ -27,7 +29,6 @@ const Profile = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    // Here you would typically save to Firebase
     console.log('Profile saved:', formData);
   };
 
@@ -38,7 +39,7 @@ const Profile = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-3xl shadow-2xl border-2 border-blue-100">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-3xl p-8 text-white">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-t-3xl p-8 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center mr-6">
@@ -288,6 +289,4 @@ const Profile = () => {
       <Footer />
     </div>
   );
-};
-
-export default Profile;
+}
