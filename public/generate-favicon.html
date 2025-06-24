@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Favicon</title>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Clear canvas with blue background
+        ctx.fillStyle = '#2A4494';
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Draw white circle background
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(16, 16, 12, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Draw orange "T" text
+        ctx.fillStyle = '#F4A261';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('T', 16, 16);
+        
+        // Download as PNG
+        const link = document.createElement('a');
+        link.download = 'favicon.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    </script>
+</body>
+</html>
