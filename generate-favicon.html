@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32" style="border: 1px solid black;"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background gradient
+        const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gradient.addColorStop(0, '#3b82f6');
+        gradient.addColorStop(1, '#1e40af');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Border
+        ctx.strokeStyle = '#1e3a8a';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(1, 1, 30, 30);
+        
+        // Draw hammer tool
+        ctx.fillStyle = '#fbbf24';
+        ctx.strokeStyle = '#d97706';
+        ctx.lineWidth = 1;
+        
+        // Hammer head
+        ctx.fillRect(6, 10, 8, 4);
+        ctx.strokeRect(6, 10, 8, 4);
+        
+        // Hammer handle
+        ctx.fillStyle = '#92400e';
+        ctx.fillRect(13, 14, 2, 8);
+        ctx.strokeStyle = '#78350f';
+        ctx.strokeRect(13, 14, 2, 8);
+        
+        // Draw wrench tool
+        ctx.fillStyle = '#e5e7eb';
+        ctx.strokeStyle = '#6b7280';
+        ctx.lineWidth = 1;
+        
+        // Wrench body
+        ctx.beginPath();
+        ctx.moveTo(18, 8);
+        ctx.lineTo(26, 8);
+        ctx.lineTo(26, 12);
+        ctx.lineTo(24, 12);
+        ctx.lineTo(24, 16);
+        ctx.lineTo(22, 16);
+        ctx.lineTo(22, 12);
+        ctx.lineTo(18, 12);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Wrench opening
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(20, 9, 2, 2);
+        
+        // Add highlight effects
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.fillRect(7, 11, 6, 1); // Hammer highlight
+        ctx.fillRect(19, 9, 4, 1); // Wrench highlight
+        
+        // Convert to data URL and create download link
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'favicon.png';
+        link.href = dataURL;
+        document.body.appendChild(link);
+        link.click();
+    </script>
+</body>
+</html>
