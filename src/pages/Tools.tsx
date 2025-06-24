@@ -10,35 +10,35 @@ export default function Tools() {
       <Navigation />
       
       {/* Search Section */}
-      <div className="bg-white py-16">
+      <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-slate-800 mb-8 text-center">Rent Tools</h1>
+          <h1 className="text-5xl font-bold text-slate-800 mb-8 text-center">Rent Tools</h1>
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <input
               type="text"
               placeholder="Search for tools..."
-              className="flex-1 px-6 py-4 border-2 border-slate-200 rounded-xl focus:border-orange-600 focus:outline-none text-lg"
+              className="flex-1 px-6 py-4 border-2 border-slate-200 rounded-xl focus:border-orange-600 focus:outline-none text-lg shadow-sm"
             />
-            <Button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg rounded-xl font-semibold">
+            <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg rounded-xl font-semibold shadow-lg">
               Search
             </Button>
           </div>
           
           {/* Filters */}
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-300 px-6 py-3 rounded-xl">
               All Tools
             </Button>
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-300 px-6 py-3 rounded-xl">
               Power Tools
             </Button>
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-300 px-6 py-3 rounded-xl">
               Garden Tools
             </Button>
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-300 px-6 py-3 rounded-xl">
               Hand Tools
             </Button>
-            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="outline" className="border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-300 px-6 py-3 rounded-xl">
               Equipment
             </Button>
           </div>
@@ -55,6 +55,8 @@ export default function Tools() {
             brand="Bosch"
             condition="Excellent"
             available={true}
+            isPromoted={true}
+            image="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop"
             id="1"
           />
           <ToolCard
@@ -64,6 +66,7 @@ export default function Tools() {
             brand="Honda"
             condition="Good"
             available={true}
+            image="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop"
             id="2"
           />
           <ToolCard
@@ -73,6 +76,7 @@ export default function Tools() {
             brand="Makita"
             condition="Excellent"
             available={false}
+            image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop"
             id="3"
           />
           <ToolCard
@@ -82,6 +86,7 @@ export default function Tools() {
             brand="DeWalt"
             condition="Good"
             available={true}
+            image="https://images.unsplash.com/photo-1609010697446-11f2155278f0?w=400&h=300&fit=crop"
             id="4"
           />
           <ToolCard
@@ -91,6 +96,7 @@ export default function Tools() {
             brand="Karcher"
             condition="Excellent"
             available={true}
+            image="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop"
             id="5"
           />
           <ToolCard
@@ -100,6 +106,7 @@ export default function Tools() {
             brand="Rubi"
             condition="Good"
             available={false}
+            image="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop"
             id="6"
           />
         </div>

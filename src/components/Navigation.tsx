@@ -6,11 +6,11 @@ const Navigation = () => {
   const location = useLocation();
 
   return (
-    <nav className="bg-gradient-to-r from-slate-800 to-slate-900 shadow-lg sticky top-0 z-50">
+    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-slate-800">
               Tool<span className="text-orange-500">N</span>Task
             </div>
           </Link>
@@ -18,68 +18,68 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 location.pathname === '/'
-                  ? 'text-orange-400 bg-slate-700'
-                  : 'text-white hover:text-orange-400 hover:bg-slate-700'
+                  ? 'text-orange-600 bg-orange-50 shadow-sm'
+                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
               }`}
             >
               Home
             </Link>
             <Link
               to="/tasks"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 location.pathname.startsWith('/tasks')
-                  ? 'text-orange-400 bg-slate-700'
-                  : 'text-white hover:text-orange-400 hover:bg-slate-700'
+                  ? 'text-orange-600 bg-orange-50 shadow-sm'
+                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
               }`}
             >
               Tasks
             </Link>
             <Link
               to="/tools"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 location.pathname.startsWith('/tools')
-                  ? 'text-orange-400 bg-slate-700'
-                  : 'text-white hover:text-orange-400 hover:bg-slate-700'
+                  ? 'text-orange-600 bg-orange-50 shadow-sm'
+                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
               }`}
             >
               Tools
             </Link>
             <Link
               to="/about"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 location.pathname === '/about'
-                  ? 'text-orange-400 bg-slate-700'
-                  : 'text-white hover:text-orange-400 hover:bg-slate-700'
+                  ? 'text-orange-600 bg-orange-50 shadow-sm'
+                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
               }`}
             >
               About Us
             </Link>
             <Link
               to="/contact"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 location.pathname === '/contact'
-                  ? 'text-orange-400 bg-slate-700'
-                  : 'text-white hover:text-orange-400 hover:bg-slate-700'
+                  ? 'text-orange-600 bg-orange-50 shadow-sm'
+                  : 'text-slate-600 hover:text-orange-600 hover:bg-orange-50'
               }`}
             >
               Contact
             </Link>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center space-x-3">
             <Link 
               to="/signin"
-              className="bg-white hover:bg-gray-100 text-slate-800 px-4 py-2 rounded-full text-sm font-medium transition-colors mr-3"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-md"
             >
               Sign In
             </Link>
             <Link 
-              to="/profile"
-              className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-colors"
+              to="/signup"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-md"
             >
-              <span className="text-white font-semibold text-sm">P</span>
+              Sign Up
             </Link>
           </div>
         </div>
