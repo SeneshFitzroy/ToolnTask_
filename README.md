@@ -8,7 +8,7 @@
 ## 🌟 Standout Features  
 - 🛠️ **Equipment Rentals**: Rent or list tools (e.g., drills, lawnmowers) to save or earn effortlessly.  
 - 👷 **Gig Marketplace**: Book or offer gigs like babysitting, gardening, or repairs with ease.  
-- 📱 **Sleek UI**: Responsive, intuitive design with search, profiles, and secupayments.  
+- 📱 **Sleek UI**: Responsive, intuitive design with search, profiles, and secure payments.  
 - 🤝 **Trusted Network**: Advanced verification for safe, reliable transactions.  
 
 > 💡 **What Sets Us Apart?** Unlike TaskRabbit, ToolnTask fuses rentals *and* gigs, crafted for Sri Lanka’s unique landscape.
